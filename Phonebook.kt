@@ -7,6 +7,8 @@ open class Search() {
     val findFile = File("/Users/ahalias/demo/Phone Book/src/find.txt").readLines().toMutableList()
     var timeTaken: Long = 0
     var timeSum: Long = 0
+    var starto = 0L
+    var endo = 0L
     var time = 0
     var entries = 0
     var entriesB = 0
@@ -89,20 +91,16 @@ open class Search() {
         val bjTime = currentTimeMillis() - startBJ
     }
     fun quickBin() {
-        val start = currentTimeMillis()
         println("Start searching (quick sort + binary search)...")
         quickSort(dataSet)
-        val end = currentTimeMillis()
-        timeTaken = end - start
-        val time = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", timeTaken)
-        println("Found $entriesB / ${findFile.size} entries. Time taken: $time\n")
     }
     fun quickSort(arr: MutableList<String>) {
         val start = currentTimeMillis()
         quicksort(arr, 0, arr.size - 1)
         val end = currentTimeMillis()
         val startS = currentTimeMillis()
-        val time = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", end - start)
+        starto = end - start
+        val time = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", starto)
         println("Sorting time: $time")
         binarySearch(arr, findFile, startS)
     }
@@ -141,8 +139,11 @@ open class Search() {
         }
         entriesB = element.size
         val end = currentTimeMillis()
-        val time = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", end - start)
-        println("Searching time: $time")
+        endo = end - start
+        val timet = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", endo)
+        println("Searching time: $timet")
+        val time = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", endo + starto)
+        println("Found $entriesB / ${findFile.size} entries. Time taken: $time\n")
     }
     fun hashMap() {
         println("Start searching (hash table)...")
