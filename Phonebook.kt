@@ -101,9 +101,9 @@ open class Search() {
         val start = currentTimeMillis()
         quicksort(arr, 0, arr.size - 1)
         val end = currentTimeMillis()
+        val startS = currentTimeMillis()
         val time = String.format("%1\$tM min. %1\$tS sec. %1\$tL ms.", end - start)
         println("Sorting time: $time")
-        val startS = currentTimeMillis()
         binarySearch(arr, findFile, startS)
     }
     // Take Left (first) Index of the array and Right (last) Index of the array
